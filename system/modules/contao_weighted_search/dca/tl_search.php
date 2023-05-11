@@ -10,13 +10,14 @@
  * @license    https://opensource.org/license/gpl-3-0/
 **/
 
+/* This overrides Contao 4.13's original tl_search.php so it can be viewed as a backend section. */
+
 /* Table tl_location */
 $GLOBALS['TL_DCA']['tl_search'] = array
 (
 	// Config
 	'config' => array
 	(
-		'dataContainer'               => 'Table',
 		'sql' => array
 		(
 			'keys' => array
@@ -27,97 +28,81 @@ $GLOBALS['TL_DCA']['tl_search'] = array
 			)
 		)
 	),
-	
-	
-	
-	
-	
-
 	'list' => array
 	(
-	'sorting' => array
-	(
-	    'mode'                    => 1,
-	    'fields'                  => array('url'),
-	    'flag'                    => 1,
-	    'panelLayout'             => 'filter;search,limit'
-	),
-	'label' => array
-	(
-	    'fields'                  => array('url'),
-	    'format'                  => '%s'
-	),
-	'global_operations' => array
-	(
-	    'export' => array
-	    (
-		'label'               => 'Export Search Index CSV',
-		'href'                => 'key=exportSearchIndex',
-		'icon'                => 'system/modules/contao_search_weight/assets/icons/file-export-icon-16.png'
-	    ),
-	    'all' => array
-	    (
-		'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
-		'href'                => 'act=select',
-		'class'               => 'header_edit_all',
-		'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
-	    )
+        'sorting' => array
+        (
+            'mode'                    => 1,
+            'fields'                  => array('url'),
+            'flag'                    => 1,
+            'panelLayout'             => 'filter;search,limit'
+        ),
+        'label' => array
+        (
+            'fields'                  => array('url'),
+            'format'                  => '%s'
+        ),
+        'global_operations' => array
+        (
+            'export' => array
+            (
+                'label'               => 'Export Search Index CSV',
+                'href'                => 'key=exportSearchIndex',
+                'icon'                => 'system/modules/contao_search_weight/assets/icons/file-export-icon-16.png'
+            ),
+            'all' => array
+            (
+                'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
+                'href'                => 'act=select',
+                'class'               => 'header_edit_all',
+                'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
+            )
 
-	),
-	'operations' => array
-	(
-	    'edit' => array
-	    (
-		'label'               => &$GLOBALS['TL_LANG']['tl_search']['edit'],
-		'href'                => 'act=edit',
-		'icon'                => 'edit.gif'
-	    ),
+        ),
+        'operations' => array
+        (
+            'edit' => array
+            (
+                'label'               => &$GLOBALS['TL_LANG']['tl_search']['edit'],
+                'href'                => 'act=edit',
+                'icon'                => 'edit.gif'
+            ),
 
-	    'copy' => array
-	    (
-		'label'               => &$GLOBALS['TL_LANG']['tl_search']['copy'],
-		'href'                => 'act=copy',
-		'icon'                => 'copy.gif'
-	    ),
-	    'delete' => array
-	    (
-		'label'               => &$GLOBALS['TL_LANG']['tl_search']['delete'],
-		'href'                => 'act=delete',
-		'icon'                => 'delete.gif',
-		'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
-	    ),
-	    'toggle' => array
-		(
-			'label'               => &$GLOBALS['TL_LANG']['tl_search']['toggle'],
-			'icon'                => 'visible.gif',
-			'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
-			'button_callback'     => array('Bcs\Backend\SearchIndexBackend', 'toggleIcon')
-		),
-	    'show' => array
-	    (
-		'label'               => &$GLOBALS['TL_LANG']['tl_search']['show'],
-		'href'                => 'act=show',
-		'icon'                => 'show.gif'
-	    )
-	)
+            'copy' => array
+            (
+                'label'               => &$GLOBALS['TL_LANG']['tl_search']['copy'],
+                'href'                => 'act=copy',
+                'icon'                => 'copy.gif'
+            ),
+            'delete' => array
+            (
+                'label'               => &$GLOBALS['TL_LANG']['tl_search']['delete'],
+                'href'                => 'act=delete',
+                'icon'                => 'delete.gif',
+                'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
+            ),
+            'toggle' => array
+            (
+                'label'               => &$GLOBALS['TL_LANG']['tl_search']['toggle'],
+                'icon'                => 'visible.gif',
+                'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
+                'button_callback'     => array('Bcs\Backend\SearchIndexBackend', 'toggleIcon')
+            ),
+            'show' => array
+            (
+                'label'               => &$GLOBALS['TL_LANG']['tl_search']['show'],
+                'href'                => 'act=show',
+                'icon'                => 'show.gif'
+            )
+        )
 	),
-	
-	
-	
-	
-	
-	
+
+    // Palette
 	'palettes' => array
 	(
 		'default'         => '{search_index_legend},url,weight;'
 	),
-	
-	
-	
-	
-	
-	
-	
+
 	// Fields
 	'fields' => array
 	(
@@ -159,7 +144,7 @@ $GLOBALS['TL_DCA']['tl_search'] = array
 		),
 		'protected' => array
 		(
-			'sql'                     => array('type' => 'boolean', 'default' => false)
+			'sql'                     => "char(1) NOT NULL default ''"
 		),
 		'groups' => array
 		(
