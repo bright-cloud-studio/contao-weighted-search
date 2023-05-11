@@ -4,7 +4,7 @@
     "homepage": "http://brightcloudstudio.com/",
     "keywords":["contao", "weighted", "search", "bright", "cloud", "studio"],
     "type":"contao-module",
-    "license":"GPL-3.0-or-later"
+    "license":"GPL-3.0-or-later",
     "authors":[
         {
             "name":"Bright Cloud Studio",
