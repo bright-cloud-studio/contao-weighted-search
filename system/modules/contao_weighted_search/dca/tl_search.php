@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Bright Cloud Studio's Contao Search Weight
+ * Bright Cloud Studio's Contao Weighted Search
  *
- * Copyright (C) 2022 Bright Cloud Studio
+ * Copyright (C) 2023 Bright Cloud Studio
  *
- * @package    bright-cloud-studio/contao-search-weight
+ * @package    bright-cloud-studio/contao-weighted-search
  * @link       https://www.brightcloudstudio.com/
- * @license    http://opensource.org/licenses/lgpl-3.0.html
+ * @license    https://opensource.org/license/gpl-3-0/
 **/
 
 /* Table tl_location */
