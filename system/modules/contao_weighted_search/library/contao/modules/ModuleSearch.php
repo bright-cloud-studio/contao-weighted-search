@@ -238,15 +238,15 @@ class ModuleSearch extends Module
 
 			$arrResult = $objResult->getResults($to-$from+1, $from-1);
 
-      /////////////////////////////////////////////
-      // This is our magical line that will push our weighted results to the top of the page
-      /////////////////////////////////////////////
-      
-      usort($arrResult, function($a, $b) {
-          return $b['weight'] <=> $a['weight'];
-      });
-      
-      /////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////////////////////
+            // This is our magical line that will push our weighted results to the top of the page //
+            /////////////////////////////////////////////////////////////////////////////////////////
+
+            usort($arrResult, function($a, $b) {
+                return $b['weight'] <=> $a['weight'];
+            });
+
+            /////////////////////////////////////////////////////////////////////////////////////////
             
             
 
@@ -322,8 +322,10 @@ class ModuleSearch extends Module
 				continue;
 			}
 
+			$baseUrls = array_filter(array(Environment::get('base'), System::getContainer()->get('contao.assets.files_context')->getStaticUrl()));
+
 			$figureBuilder = System::getContainer()->get('contao.image.studio')->createFigureBuilder();
-			$figureBuilder->fromPath($v['https://schema.org/primaryImageOfPage']['contentUrl']);
+			$figureBuilder->fromUrl($v['https://schema.org/primaryImageOfPage']['contentUrl'], $baseUrls);
 
 			$figureMeta = new Metadata(array_filter(array(
 				Metadata::VALUE_CAPTION => $v['https://schema.org/primaryImageOfPage']['caption'] ?? null,
